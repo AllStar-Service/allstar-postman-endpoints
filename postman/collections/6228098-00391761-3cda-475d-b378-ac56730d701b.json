@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "6228098-00391761-3cda-475d-b378-ac56730d701b",
+		"name": "AllStar Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Service Request",
+			"id": "6228098-593cab5c-8f90-4a10-9e19-10c5ad7d2c9f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Fix leaking fridge\",\r\n  \"description\": \"The fridge has been dripping constantly for the past week. It's getting worse and now there's a small puddle forming under the sink. The handle feels loose when you try to turn it off completely.\",\r\n  \"location\": {\r\n    \"lat\": 25.761681,\r\n    \"lon\": -80.191788\r\n  },\r\n  \"categoryCode\": \"REFRIGERATOR\",\r\n  \"availability\": {\r\n    \"next_week\": [\"Monday 9AM - 12PM\", \"Wednesday 5PM - 9PM\"],\r\n    \"timeZone\": \"America/New_York\",\r\n    \"urgency\": \"medium\",\r\n    \"notes\": \"Available anytime between 9 AM and 4 PM on weekdays\"\r\n  },\r\n  \"mediaRefs\": [\r\n    \"https://s3.amazonaws.com/mybucket/faucet-photo-1.jpg\",\r\n    \"https://s3.amazonaws.com/mybucket/faucet-photo-2.jpg\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API Gateway URL}}/service-requests",
+					"host": [
+						"{{API Gateway URL}}"
+					],
+					"path": [
+						"service-requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Schedule Appointment",
+			"id": "6228098-2bde0d56-6e54-40e1-8f11-4309f31779c5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"startAt\": \"2025-10-15T04:32:00.000Z\",\r\n  \"endAt\":   \"2025-10-15T05:30:00.000Z\",\r\n  \"note\": \"Bringing replacement relay\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API Gateway URL}}/work-orders/{{Work Order ID}}/appointments",
+					"host": [
+						"{{API Gateway URL}}"
+					],
+					"path": [
+						"work-orders",
+						"{{Work Order ID}}",
+						"appointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"id": "6228098-a84e877a-d6ee-487b-a042-abe8cb8382a7",
+			"protocolProfileBehavior": {
+				"protocolVersion": "http2",
+				"disableBodyPruning": true,
+				"followAuthorizationHeader": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{API Gateway URL}}/health",
+					"host": [
+						"{{API Gateway URL}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Bearer Token",
+			"id": "6228098-4bfcc976-654b-488b-befe-54abc0e0d498",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text",
+							"uuid": "b9910fbe-8502-414d-befc-756dad3b7813"
+						},
+						{
+							"key": "code",
+							"value": "0b87a021-1020-4c1b-971c-268557117c72",
+							"type": "text",
+							"uuid": "0d91a1a2-b069-4c84-9322-55f58385a192"
+						},
+						{
+							"key": "client_id",
+							"value": "1hedid4gkq9auf3ii64t1j5svm",
+							"type": "text",
+							"uuid": "ab7b1671-ecad-4543-b5ef-1396736fde44"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{API Gateway Return URI}}",
+							"type": "text",
+							"uuid": "cb81744c-94eb-4212-829e-292b4268cc99"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Cognito URL}}/oauth2/token",
+					"host": [
+						"{{Cognito URL}}"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f77c0eef-4416-42aa-96bf-1b7d5f8de266",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "71778a22-5643-4531-965a-0e87c7398869",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt",
+			"value": ""
+		}
+	]
+}
