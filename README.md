@@ -1,0 +1,1 @@
+# allstar-postman-endpoints
