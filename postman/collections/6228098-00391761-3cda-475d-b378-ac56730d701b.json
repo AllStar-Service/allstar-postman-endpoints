@@ -185,7 +185,7 @@
 			"response": []
 		},
 		{
-			"name": "{{API Gateway URL}}/onboarding/bootstrap",
+			"name": "Get Onboarding Details",
 			"id": "6228098-08daadb7-cfcd-43e2-9cde-84cd56e934cc",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
