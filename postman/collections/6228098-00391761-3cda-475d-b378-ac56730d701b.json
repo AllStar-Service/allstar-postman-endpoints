@@ -214,6 +214,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Cognito User Info",
+			"id": "6228098-f9e2ba12-fa8a-4342-8db6-b7760e69b9a3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Cognito URL}}/oauth2/userInfo",
+					"host": [
+						"{{Cognito URL}}"
+					],
+					"path": [
+						"oauth2",
+						"userInfo"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
